@@ -10,6 +10,15 @@ git commit
 第二步，使用命令git commit，完成。
 
 
+版本回退
+git log 显示从最近到最远的提交日志（含版本号）
+git log --pretty=oneline 一行显示一次提交
+git reset --hard HEAD^ 退回到上一个版本
+git reset --hard HEAD^^ 退回到上两个版本
+git reset --hard HEAD~100 退回到上100个版本
+git reset --hard 3628164（退回到版本号为3628164的版本）
+
+
 git status 
 git diff
 要随时掌握工作区的状态，使用git status命令。
@@ -47,3 +56,10 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 修改的内容必须要git add 才能被git commit，否则没有被git add的内容在git commit时不会被提交。
 git add将修改的内容放在stage（暂存区）中，git commit则将暂存区中的文件提交上去。
 所以如果不对修改的内容文件git add ，git commit就不会将修改的内容提交。
+
+撤销修改：
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
