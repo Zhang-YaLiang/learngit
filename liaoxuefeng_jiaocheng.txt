@@ -1,5 +1,6 @@
-现在总结一下今天学的两点内容：
-
+git init 
+git add 
+git commit
 初始化一个Git仓库，使用git init命令。
 
 添加文件到Git仓库，分两步：
@@ -9,12 +10,15 @@
 第二步，使用命令git commit，完成。
 
 
-
+git status 
+git diff
 要随时掌握工作区的状态，使用git status命令。
 
 如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
 
-
+git reset --hard commit_id
+git log
+git reflog
 现在总结一下：
 
 HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
@@ -24,7 +28,9 @@ HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历�
 要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
 
-版本库（repository） 
+版本库（repository）
+stage（index）
+master 、Head
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向
   master的一个指针叫HEAD。
 
@@ -37,3 +43,7 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
 
 你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+
+修改的内容必须要git add 才能被git commit，否则没有被git add的内容在git commit时不会被提交。
+git add将修改的内容放在stage（暂存区）中，git commit则将暂存区中的文件提交上去。
+所以如果不对修改的内容文件git add ，git commit就不会将修改的内容提交。
