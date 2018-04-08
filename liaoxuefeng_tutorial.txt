@@ -114,4 +114,29 @@ git merge --no-ff -m "merge with no-ff" dev
 合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
 合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
 
+bug分支：
+Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+首先确定要在哪个分支上修复bug，假定需要在master分支上修复，就从master创建临时分支
+git checkout master
+git checkout -b issue-101
+现在修复bug，然后提交
+git add readme.txt
+git commit -m "fix bug 101"
+修复完成后，切换到master分支，并完成合并，最后删除issue-101分支
+git checkout master
+git merge --no-ff -m "merged bug fix 101" issue-101
+git branch -d issue-101
+现在，是时候接着回到dev分支干活了！
+git checkout dev
+git stash list
+工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
+一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+另一种方式是用git stash pop，恢复的同时把stash内容也删了
+你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令
+git stash apply stash@{0}
+
+
+
+
+
 
