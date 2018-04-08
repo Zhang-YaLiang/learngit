@@ -136,6 +136,23 @@ git stash list
 git stash apply stash@{0}
 
 
+Feature分支：
+开发新功能：git checkout -b feature-vulcan
+假设开发完毕，提交：
+git add vulcan.py
+git commit -m "add feature vulcan"
+切回dev，准备合并：git checkout dev
+新功能突然取消：
+git branch -d feature-vulcan
+销毁失败。Git友情提醒，feature-vulcan分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令git branch -D feature-vulcan
+
+
+
+
+
+
+
+
 
 
 
